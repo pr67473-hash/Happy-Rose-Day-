@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Rose Day Khushi ❤️</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      background: linear-gradient(135deg, #ffafbd, #ffc3a0);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.96);
+      width: 90%;
+      max-width: 420px;
+      padding: 30px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+      z-index: 2; /* Card stays behind roses */
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      color: #d6336c;
+      margin-bottom: 10px;
+    }
+
+    .rose-main {
+      font-size: 60px;
+      animation: float 2.5s infinite ease-in-out;
+    }
+
+    p {
+      color: #444;
+      margin: 12px 0;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .note {
+      background: #fff0f5;
+      padding: 15px;
+      border-radius: 12px;
+      margin-top: 15px;
+      font-size: 14px;
+    }
+
+    .from {
+      margin-top: 20px;
+      font-weight: 500;
+      color: #d6336c;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    /* 🌹 Flying roses (IN FRONT) */
+    .flying-rose {
+      position: absolute;
+      font-size: 30px;
+      cursor: pointer;
+      animation: fly linear infinite;
+      z-index: 10;          /* Front layer */
+      opacity: 0.95;
+      transition: transform 0.2s ease;
+      pointer-events: auto;
+    }
+
+    .flying-rose:hover {
+      transform: scale(1.2);
+    }
+
+    @keyframes fly {
+      from {
+        transform: translateY(110vh) rotate(0deg);
+      }
+      to {
+        transform: translateY(-120px) rotate(360deg);
+      }
+    }
+
+    /* 💌 Popup */
+    .popup {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 20;
+    }
+
+    .popup-content {
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      text-align: center;
+      width: 80%;
+      max-width: 320px;
+      animation: pop 0.4s ease;
+    }
+
+    @keyframes pop {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .popup-content h2 {
+      color: #d6336c;
+      margin-bottom: 10px;
+    }
+
+    .close {
+      margin-top: 15px;
+      padding: 8px 16px;
+      border: none;
+      background: #d6336c;
+      color: white;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Main Card -->
+  <div class="card">
+    <div class="rose-main">🌹</div>
+    <h1>Happy Rose Day, Khushi</h1>
+
+    <p>
+      Some roses fly, some bloom…  
+      but my favorite rose will always be **you** 💕  
+      <br>(Tap the roses 😘)
+    </p>
+
+    <div class="note">
+      Khushi, you make my life brighter just by being in it 🌸
+    </div>
+
+    <div class="from">
+      — With all my love, Piyush ❤️
+    </div>
+  </div>
+
+  <!-- Popup -->
+  <div class="popup" id="popup">
+    <div class="popup-content">
+      <h2>💌 For Khushi</h2>
+      <p id="popupText"></p>
+      <button class="close" onclick="closePopup()">Close</button>
+    </div>
+  </div>
+
+  <script>
+    const messages = [
+      "Khushi, you are my favorite thought every single day 🌹",
+      "If love had a flower, it would look exactly like you ❤️",
+      "Khushi + Piyush feels like home to me 🏡",
+      "You don’t just make me smile, you make my heart peaceful 💕",
+      "Every rose reminds me why I fell for you 😘",
+      "You are my today, my tomorrow, and all my forever 🌸",
+      "Khushi, I’m grateful for you more than you’ll ever know ✨"
+    ];
+
+    const popup = document.getElementById("popup");
+    const popupText = document.getElementById("popupText");
+
+    function showPopup() {
+      const msg = messages[Math.floor(Math.random() * messages.length)];
+      popupText.innerText = msg;
+      popup.style.display = "flex";
+    }
+
+    function closePopup() {
+      popup.style.display = "none";
+    }
+
+    // 🌹 Create flying roses
+    for (let i = 0; i < 12; i++) {
+      const rose = document.createElement("div");
+      rose.className = "flying-rose";
+      rose.innerText = "🌹";
+      rose.style.left = Math.random() * 100 + "vw";
+      rose.style.animationDuration = (6 + Math.random() * 6) + "s";
+      rose.style.animationDelay = Math.random() * 5 + "s";
+
+      rose.onclick = showPopup;
+      document.body.appendChild(rose);
+    }
+  </script>
+
+</body>
+</html>
